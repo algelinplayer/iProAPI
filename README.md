@@ -29,6 +29,6 @@ Run `node dist/index` for a dev server.
 
 Then, call the API passing the query parameters `filename`, `width` and `height`, for example:
 
-`http://localhost:3000?filename=icelandwaterfall.jpg&width=300&height=300`
+`http://localhost:3000/ipro/images?filename=icelandwaterfall.jpg&width=300&height=300`
 
 
