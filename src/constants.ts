@@ -1,0 +1,17 @@
+const IMAGE_CACHE_DIRECTORY_FOR_TESTS = "assets/images_cache_for_tests";
+const IMAGE_DIRECTORY = "assets/images";
+const IMAGE_CACHE_DIRECTORY = "assets/images_cache";
+const IMAGE_FILENAME_FOR_TESTS = "icelandwaterfall.jpg";
+const MISSING_IMAGE_FILENAME_FOR_TESTS = "forfait.jpg";
+const WIDTH_FOR_TESTS = 200;
+const HEIGHT_FOR_TESTS = 300;
+
+export {
+  IMAGE_CACHE_DIRECTORY_FOR_TESTS,
+  IMAGE_DIRECTORY,
+  IMAGE_CACHE_DIRECTORY,
+  IMAGE_FILENAME_FOR_TESTS,
+  MISSING_IMAGE_FILENAME_FOR_TESTS,
+  WIDTH_FOR_TESTS,
+  HEIGHT_FOR_TESTS,
+};
