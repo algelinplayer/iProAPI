@@ -28,6 +28,14 @@ const imagePathBuilder = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+const thumbSender = (req: Request, res: Response) => {
+  if (res.locals.cachedImageFullFilePath) {
+    res.sendFile(res.locals.cachedImageFullFilePath);
+  } else {
+    res.status(500).send("Could not resize the image.");
+  }
+};
+
 const getCachedImageFileName = (
   imageFileName: string,
   width: number,
@@ -66,5 +74,6 @@ export default {
   checkIfFileExists,
   getFileBuffer,
   imagePathBuilder,
+  thumbSender,
   cachedImageFullFilePathBuilder,
 };
