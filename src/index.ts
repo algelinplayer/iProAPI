@@ -10,13 +10,7 @@ app.get(
   "/ipro/images",
   resizer.resizer,
   reader.imagePathBuilder,
-  (req: Request, res: Response) => {
-    if (res.locals.cachedImageFullFilePath) {
-      res.sendFile(res.locals.cachedImageFullFilePath);
-    } else {
-      res.status(500).send("Could not resize the image.");
-    }
-  }
+  reader.thumbSender
 );
 
 app.listen(port, () => {
