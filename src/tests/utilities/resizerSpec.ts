@@ -1,8 +1,8 @@
-import resizer from "../../utilities/resizer";
-import reader from "../../utilities/reader";
-import fs from "fs";
-import path from "path";
-import { OutputInfo } from "sharp";
+import resizer from '../../utilities/resizer';
+import reader from '../../utilities/reader';
+import fs from 'fs';
+import path from 'path';
+import {OutputInfo} from 'sharp';
 import {
   IMAGE_CACHE_DIRECTORY_FOR_TESTS,
   IMAGE_DIRECTORY,
@@ -10,11 +10,11 @@ import {
   MISSING_IMAGE_FILENAME_FOR_TESTS,
   WIDTH_FOR_TESTS,
   HEIGHT_FOR_TESTS,
-} from "../../constants";
-import { ENOENT } from "constants";
+} from '../../constants';
+import {ENOENT} from 'constants';
 
-describe("Tests for the resizer component", () => {
-  describe("Functions related to resizing an image", () => {
+describe('Tests for the resizer component', () => {
+  describe('Functions related to resizing an image', () => {
     const imageCacheDirectory = IMAGE_CACHE_DIRECTORY_FOR_TESTS;
     const imageDirectory = IMAGE_DIRECTORY;
     const imageFileName = IMAGE_FILENAME_FOR_TESTS;
@@ -45,8 +45,8 @@ describe("Tests for the resizer component", () => {
       }
     });
 
-    it("should resize an existing image", async () => {
-      const cachedImageFilePath = reader.getCachedImageFileName(
+    it('should resize an existing image', async () => {
+      const cachedImageFilePath = reader.getCachedImageFileNamePath(
         imageFileName,
         width,
         height,
@@ -70,8 +70,8 @@ describe("Tests for the resizer component", () => {
       expect(secondCheck).toBe(true);
     });
 
-    it("should not resize an existing image because its cached version is available", async () => {
-      const cachedImageFilePath = reader.getCachedImageFileName(
+    it('should not resize an existing image because its cached version is available', async () => {
+      const cachedImageFilePath = reader.getCachedImageFileNamePath(
         imageFileName,
         width,
         height,
@@ -90,11 +90,11 @@ describe("Tests for the resizer component", () => {
         imageCacheDirectory
       )) as string;
 
-      expect(resolvedMessage).toBe("Image already cached");
+      expect(resolvedMessage).toBe('Image already cached');
     });
 
-    it("should not resize a missing image", async () => {
-      const cachedImageFilePath = reader.getCachedImageFileName(
+    it('should not resize a missing image', async () => {
+      const cachedImageFilePath = reader.getCachedImageFileNamePath(
         nonExistingImage,
         width,
         height,

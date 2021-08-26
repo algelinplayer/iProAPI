@@ -29,7 +29,7 @@ describe('Test endpoint responses', () => {
       done();
     });
 
-    it('should warn api user about width containing invalid values', async (done) => {
+    it('should warn api user about width containing an invalid value', async (done) => {
       const response = await request.get(
         `/ipro/images?filename=${IMAGE_FILENAME_FOR_TESTS}&width=${INVALID_WIDTH_FOR_TESTS}&height=${HEIGHT_FOR_TESTS}`
       );
@@ -37,7 +37,7 @@ describe('Test endpoint responses', () => {
       done();
     });
 
-    it('should warn api user about height containing invalid values', async (done) => {
+    it('should warn api user about height containing an invalid value', async (done) => {
       const response = await request.get(
         `/ipro/images?filename=${IMAGE_FILENAME_FOR_TESTS}&width=${WIDTH_FOR_TESTS}&height=${INVALID_HEIGHT_FOR_TESTS}`
       );

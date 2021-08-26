@@ -1,4 +1,4 @@
-import sharp, {OutputInfo} from 'sharp';
+import sharp from 'sharp';
 import {Request, Response, NextFunction} from 'express';
 import reader from './reader';
 import {IMAGE_DIRECTORY, IMAGE_CACHE_DIRECTORY} from '../constants';
@@ -6,6 +6,7 @@ import {IMAGE_DIRECTORY, IMAGE_CACHE_DIRECTORY} from '../constants';
 const resizer = async (req: Request, res: Response, next: NextFunction) => {
   let width = req.query.width;
   let height = req.query.height;
+
   if (
     typeof height === 'undefined' ||
     Number.isNaN(-height) ||
@@ -16,7 +17,19 @@ const resizer = async (req: Request, res: Response, next: NextFunction) => {
     return;
   }
 
-  const result = await resizeImage(
+  let imageFilePath = reader.getImageFileNamePath(
+    req.query.filename as string,
+    IMAGE_DIRECTORY
+  );
+
+  const imageFileExists = reader.checkIfFileExists(imageFilePath);
+
+  if (!imageFileExists) {
+    res.status(404).send('Image file does not exists.');
+    return;
+  }
+
+  await resizeImage(
     req.query.filename as string,
     IMAGE_DIRECTORY,
     parseInt(req.query.width as string),
@@ -33,7 +46,7 @@ const resizeImage = async (
   height: number,
   imageCacheDirectory: string
 ): Promise<unknown> => {
-  let fileOut = reader.getCachedImageFileName(
+  let fileOut = reader.getCachedImageFileNamePath(
     originalImageName,
     width,
     height,

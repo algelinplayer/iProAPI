@@ -1,32 +1,32 @@
-import reader from "../../utilities/reader";
-import path from "path";
+import reader from '../../utilities/reader';
+import path from 'path';
 import {
   HEIGHT_FOR_TESTS,
   IMAGE_CACHE_DIRECTORY_FOR_TESTS,
   IMAGE_FILENAME_FOR_TESTS,
   WIDTH_FOR_TESTS,
-} from "../../constants";
+} from '../../constants';
 
-describe("Tests for the reader component", () => {
-  describe("Functions related to getting or reading an image", () => {
+describe('Tests for the reader component', () => {
+  describe('Functions related to getting or reading an image', () => {
     const imageCacheDirectory = IMAGE_CACHE_DIRECTORY_FOR_TESTS;
     const imageFileName = IMAGE_FILENAME_FOR_TESTS;
     const width = WIDTH_FOR_TESTS;
     const height = HEIGHT_FOR_TESTS;
 
-    it("should build the cached image filename", async () => {
-      const cachedImageFullFileName = reader.getCachedImageFileName(
+    it('should build the cached image filename', async () => {
+      const cachedImageFullFileName = reader.getCachedImageFileNamePath(
         imageFileName,
         width,
         height,
         imageCacheDirectory
       );
       expect(
-        cachedImageFullFileName.endsWith("icelandwaterfall_200_300.jpg")
+        cachedImageFullFileName.endsWith('icelandwaterfall_200_300.jpg')
       ).toBe(true);
     });
-    it("should build the full path to the cached image", async () => {
-      const cachedImageFullFileName = reader.getCachedImageFileName(
+    it('should build the full path to the cached image', async () => {
+      const cachedImageFullFileName = reader.getCachedImageFileNamePath(
         imageFileName,
         width,
         height,
@@ -39,7 +39,7 @@ describe("Tests for the reader component", () => {
         imageCacheDirectory
       );
       expect(cachedImageFullFilePath).toBe(
-        path.join(__dirname, "..", "..", "..", cachedImageFullFileName)
+        path.join(__dirname, '..', '..', '..', cachedImageFullFileName)
       );
     });
   });
