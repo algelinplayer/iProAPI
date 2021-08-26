@@ -1,9 +1,21 @@
-import sharp, { OutputInfo } from "sharp";
-import { Request, Response, NextFunction } from "express";
-import reader from "./reader";
-import { IMAGE_DIRECTORY, IMAGE_CACHE_DIRECTORY } from "../constants";
+import sharp, {OutputInfo} from 'sharp';
+import {Request, Response, NextFunction} from 'express';
+import reader from './reader';
+import {IMAGE_DIRECTORY, IMAGE_CACHE_DIRECTORY} from '../constants';
 
 const resizer = async (req: Request, res: Response, next: NextFunction) => {
+  let width = req.query.width;
+  let height = req.query.height;
+  if (
+    typeof height === 'undefined' ||
+    Number.isNaN(-height) ||
+    typeof width === 'undefined' ||
+    Number.isNaN(-width)
+  ) {
+    res.status(400).send('Width and height must be integers.');
+    return;
+  }
+
   const result = await resizeImage(
     req.query.filename as string,
     IMAGE_DIRECTORY,
@@ -32,7 +44,7 @@ const resizeImage = async (
 
   if (exists) {
     return new Promise((resolve) => {
-      return resolve("Image already cached");
+      return resolve('Image already cached');
     });
   } else {
     try {
@@ -43,7 +55,7 @@ const resizeImage = async (
       return await sharp(fileBuffer).resize(width, height).toFile(fileOut);
     } catch (e) {
       return new Promise((resolve, reject) => {
-        if (e.code !== "ENOENT") {
+        if (e.code !== 'ENOENT') {
           reject(e);
         } else {
           resolve(e);
@@ -53,4 +65,4 @@ const resizeImage = async (
   }
 };
 
-export default { resizeImage, resizer };
+export default {resizeImage, resizer};

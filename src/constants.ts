@@ -1,10 +1,12 @@
-const IMAGE_CACHE_DIRECTORY_FOR_TESTS = "assets/images_cache_for_tests";
-const IMAGE_DIRECTORY = "assets/images";
-const IMAGE_CACHE_DIRECTORY = "assets/images_cache";
-const IMAGE_FILENAME_FOR_TESTS = "icelandwaterfall.jpg";
-const MISSING_IMAGE_FILENAME_FOR_TESTS = "forfait.jpg";
+const IMAGE_CACHE_DIRECTORY_FOR_TESTS = 'assets/images_cache_for_tests';
+const IMAGE_DIRECTORY = 'assets/images';
+const IMAGE_CACHE_DIRECTORY = 'assets/images_cache';
+const IMAGE_FILENAME_FOR_TESTS = 'icelandwaterfall.jpg';
+const MISSING_IMAGE_FILENAME_FOR_TESTS = 'forfait.jpg';
 const WIDTH_FOR_TESTS = 200;
+const INVALID_WIDTH_FOR_TESTS = 'abc';
 const HEIGHT_FOR_TESTS = 300;
+const INVALID_HEIGHT_FOR_TESTS = 'xyz';
 
 export {
   IMAGE_CACHE_DIRECTORY_FOR_TESTS,
@@ -14,4 +16,6 @@ export {
   MISSING_IMAGE_FILENAME_FOR_TESTS,
   WIDTH_FOR_TESTS,
   HEIGHT_FOR_TESTS,
+  INVALID_WIDTH_FOR_TESTS,
+  INVALID_HEIGHT_FOR_TESTS,
 };
