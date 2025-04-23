@@ -1,5 +1,7 @@
 import supertest from 'supertest';
-import app from '../index';
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '../app.module';
 import {
   HEIGHT_FOR_TESTS,
   INVALID_HEIGHT_FOR_TESTS,
@@ -9,7 +11,22 @@ import {
   INVALID_WIDTH_FOR_TESTS,
 } from '../constants';
 
-const request = supertest(app);
+let app: INestApplication;
+let request: supertest.SuperTest<supertest.Test>;
+
+beforeAll(async () => {
+  const moduleFixture: TestingModule = await Test.createTestingModule({
+    imports: [AppModule],
+  }).compile();
+
+  app = moduleFixture.createNestApplication();
+  await app.init();
+  request = supertest(app.getHttpServer());
+});
+
+afterAll(async () => {
+  await app.close();
+});
 
 describe('Test endpoint responses', () => {
   describe('Functions related to getting the image', () => {

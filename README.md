@@ -1,34 +1,84 @@
-# Image Processing API (iPro API)
+# iProAPI
 
-This repository contains the "Image Processing API" app.
+Este projeto é uma API simples para manipulação de imagens, agora migrada para o NestJS.
 
-## Installing
+## Instalação
 
-`npm install` to resolve dependencies
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/algelinplayer/iProAPI.git
+   cd iProAPI
+   ```
 
-*All the images are in the `assets/images` directory.*
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-## Build
+## Executando a Aplicação
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Execute a aplicação em modo de desenvolvimento:
 
-## Running unit tests
+```bash
+npm run start
+```
 
-Run `npm run jasmine` to execute the unit tests via [Jasmine](https://github.com/jasmine/jasmine).
+## Endpoints
 
-*Run `npm run test` to build the project and then execute the unit tests.*
+### GET /ipro/images
 
+Este endpoint redimensiona e retorna uma imagem.
 
-## Development server (Running)
+**Parâmetros de Query:**
+- `filename`: Nome do arquivo de imagem (ex: `icelandwaterfall.jpg`)
+- `width`: Largura desejada da imagem
+- `height`: Altura desejada da imagem
 
-Run `npm run start` for a dev server using [Nodemon](https://github.com/remy/nodemon).
+**Exemplo de Requisição:**
+```http
+GET /ipro/images?filename=icelandwaterfall.jpg&width=300&height=300
+```
+Exemplo: http://localhost:3000/ipro/images?filename=icelandwaterfall.jpg&width=300&height=300
 
-or
+## Estrutura do Projeto
 
-Run `node dist/index` for a dev server.
+```plaintext
+iProAPI/
+├── images/                 # Diretório para armazenar imagens
+│   └── icelandwaterfall.jpg
+├── src/                    # Código-fonte do projeto
+│   ├── app.controller.ts   # Controlador principal
+│   ├── app.module.ts       # Módulo principal
+│   ├── app.service.ts      # Serviço principal
+│   └── main.ts             # Arquivo de inicialização
+├── test/                   # Testes do projeto
+│   └── indexSpec.ts
+├── package.json            # Dependências e scripts do projeto
+└── README.md               # Este arquivo
+```
 
-Then, call the API passing the query parameters `filename`, `width` and `height`, for example:
+## Testes
 
-`http://localhost:3000/ipro/images?filename=icelandwaterfall.jpg&width=300&height=300`
+Para rodar os testes, use o comando:
+
+```bash
+npm run test
+```
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com este projeto. Para isso, siga os passos abaixo:
+
+1. Faça um fork do projeto
+2. Crie uma nova branch (`git checkout -b feature/nova-feature`)
+3. Faça commit das suas alterações (`git commit -am 'Adiciona nova feature'`)
+4. Faça push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Para mais detalhes sobre a licença, veja MIT License.
+
+https://mit-license.org/
 
 
